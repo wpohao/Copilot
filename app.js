@@ -13,8 +13,8 @@ const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
 const THEME_STORAGE_KEY = "todo-list-theme";
 const EMPTY_MESSAGES = {
   all: "還沒有任何待辦事項，新增一個吧!",
-  active: "沒有未完成的待辦事項。",
-  completed: "沒有已完成的待辦事項。",
+  active: "目前沒有符合「未完成」篩選的事項；其他待辦仍保留在「全部」清單中，並未刪除。",
+  completed: "目前沒有符合「已完成」篩選的事項；其他待辦仍保留在「全部」清單中，並未刪除。",
 };
 
 let activeFilter = "all";
