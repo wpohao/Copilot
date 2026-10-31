@@ -2,13 +2,42 @@
   color-scheme: light;
   --color-page: #f3f5fb;
   --color-card: #ffffff;
+  --color-card-border: rgb(231 234 241 / 75%);
   --color-text: #253047;
   --color-muted: #8992a5;
   --color-border: #e7eaf1;
+  --color-input: #fbfcfe;
+  --color-placeholder: #a7afbd;
   --color-accent: #6574e8;
   --color-accent-hover: #5261d4;
+  --color-on-accent: #ffffff;
+  --color-accent-soft: rgb(101 116 232 / 15%);
   --color-danger: #d65b69;
+  --color-danger-soft: #fff1f2;
+  --color-filter-active: #eef0ff;
+  --color-filter-active-text: #4857c7;
   --shadow-card: 0 18px 50px rgb(34 48 78 / 9%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-page: #171a24;
+  --color-card: #222634;
+  --color-card-border: #303647;
+  --color-text: #edf0f8;
+  --color-muted: #a2abc0;
+  --color-border: #3a4154;
+  --color-input: #1b1f2b;
+  --color-placeholder: #8790a5;
+  --color-accent: #9aa5ff;
+  --color-accent-hover: #abb4ff;
+  --color-on-accent: #1b1e2b;
+  --color-accent-soft: rgb(154 165 255 / 20%);
+  --color-danger: #ff9aa5;
+  --color-danger-soft: #422b35;
+  --color-filter-active: #343a5a;
+  --color-filter-active-text: #d4d8ff;
+  --shadow-card: 0 18px 50px rgb(0 0 0 / 28%);
 }
 
 * {
@@ -36,7 +65,7 @@ input {
 .todo-card {
   width: min(100%, 520px);
   padding: 36px;
-  border: 1px solid rgb(231 234 241 / 75%);
+  border: 1px solid var(--color-card-border);
   border-radius: 20px;
   background: var(--color-card);
   box-shadow: var(--shadow-card);
@@ -54,10 +83,43 @@ input {
   letter-spacing: 0.08em;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 h1 {
   margin: 0;
   font-size: clamp(1.8rem, 7vw, 2.25rem);
   letter-spacing: 0.02em;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  background: var(--color-card);
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  background: var(--color-filter-active);
+}
+
+.theme-icon {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .subtitle {
@@ -79,17 +141,17 @@ h1 {
   border-radius: 10px;
   outline: none;
   color: var(--color-text);
-  background: #fbfcfe;
+  background: var(--color-input);
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .todo-form input::placeholder {
-  color: #a7afbd;
+  color: var(--color-placeholder);
 }
 
 .todo-form input:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgb(101 116 232 / 15%);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
 }
 
 .add-button {
@@ -98,7 +160,7 @@ h1 {
   border: 0;
   border-radius: 10px;
   background: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-on-accent);
   font-weight: 700;
   cursor: pointer;
   transition: background-color 160ms ease, transform 160ms ease;
@@ -118,6 +180,35 @@ h1 {
   margin: 24px 0 0;
   padding: 0;
   list-style: none;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.filter-button {
+  padding: 7px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-card);
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.filter-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.filter-button.is-active {
+  border-color: var(--color-accent);
+  background: var(--color-filter-active);
+  color: var(--color-filter-active-text);
+  font-weight: 700;
 }
 
 .todo-item {
@@ -163,7 +254,7 @@ h1 {
 }
 
 .delete-button:hover {
-  background: #fff1f2;
+  background: var(--color-danger-soft);
   color: var(--color-danger);
 }
 
@@ -208,5 +299,20 @@ h1 {
 
   .add-button {
     padding: 0 16px;
+  }
+
+  .theme-toggle {
+    gap: 5px;
+    padding: 7px 8px;
+    font-size: 0.76rem;
+  }
+
+  .filter-controls {
+    gap: 6px;
+  }
+
+  .filter-button {
+    flex: 1;
+    padding-inline: 8px;
   }
 }
